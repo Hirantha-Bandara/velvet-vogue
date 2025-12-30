@@ -1,0 +1,308 @@
+{
+  "products": [
+    {
+      "id": "VV001",
+      "name": "Velvet Blazer",
+      "description": "Elegant velvet blazer perfect for formal occasions. Available in multiple colors.",
+      "price": 89.99,
+      "category": [
+        "men",
+        "formal"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Burgundy"
+      ],
+      "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&h=800&fit=crop",
+      "rating": 4.8,
+      "stock": 25,
+      "featured": true
+    },
+    {
+      "id": "VV002",
+      "name": "Casual Denim Jacket",
+      "description": "Trendy denim jacket for everyday wear. Distressed finish for a vintage look.",
+      "price": 65.5,
+      "category": [
+        "men",
+        "casual"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Blue",
+        "Black"
+      ],
+      "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=800&fit=crop",
+      "rating": 4.5,
+      "stock": 42,
+      "featured": true
+    },
+    {
+      "id": "VV003",
+      "name": "Evening Gown",
+      "description": "Stunning evening gown with lace detailing. Perfect for special occasions.",
+      "price": 129.99,
+      "category": [
+        "women",
+        "formal"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Black",
+        "Red",
+        "Navy"
+      ],
+      "image": "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&h=800&fit=crop",
+      "rating": 4.9,
+      "stock": 18,
+      "featured": true
+    },
+    {
+      "id": "VV004",
+      "name": "Graphic T-Shirt",
+      "description": "Comfortable cotton t-shirt with unique graphic print. Limited edition design.",
+      "price": 24.99,
+      "category": [
+        "men",
+        "women",
+        "casual"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "White",
+        "Black",
+        "Gray"
+      ],
+      "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=800&fit=crop",
+      "rating": 4.3,
+      "stock": 67,
+      "featured": false
+    },
+    {
+      "id": "VV005",
+      "name": "Leather Handbag",
+      "description": "Genuine leather handbag with multiple compartments. Stylish and practical.",
+      "price": 75,
+      "category": [
+        "women",
+        "accessories"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Brown",
+        "Black",
+        "Tan"
+      ],
+      "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=800&fit=crop",
+      "rating": 4.7,
+      "stock": 31,
+      "featured": true
+    },
+    {
+      "id": "VV006",
+      "name": "Formal Trousers",
+      "description": "Premium wool blend trousers with perfect fit. Ideal for office wear.",
+      "price": 59.99,
+      "category": [
+        "men",
+        "formal"
+      ],
+      "sizes": [
+        "28",
+        "30",
+        "32",
+        "34",
+        "36"
+      ],
+      "colors": [
+        "Black",
+        "Gray",
+        "Navy"
+      ],
+      "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&h=800&fit=crop",
+      "rating": 4.6,
+      "stock": 39,
+      "featured": false
+    },
+    {
+      "id": "VV007",
+      "name": "Summer Dress",
+      "description": "Lightweight floral print dress perfect for summer. Breathable fabric.",
+      "price": 45.99,
+      "category": [
+        "women",
+        "casual"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Floral",
+        "Blue",
+        "Pink"
+      ],
+      "image": "https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?w=600&h=800&fit=crop",
+      "rating": 4.4,
+      "stock": 52,
+      "featured": true
+    },
+    {
+      "id": "VV008",
+      "name": "Sports Sneakers",
+      "description": "Comfortable sneakers for everyday wear. Cushioned sole for all-day comfort.",
+      "price": 79.99,
+      "category": [
+        "men",
+        "women",
+        "casual"
+      ],
+      "sizes": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "colors": [
+        "White",
+        "Black",
+        "Gray"
+      ],
+      "image": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&h=800&fit=crop",
+      "rating": 4.5,
+      "stock": 48,
+      "featured": false
+    },
+    {
+      "id": "VV009",
+      "name": "Winter Coat",
+      "description": "Warm wool coat for cold weather.",
+      "price": 99.99,
+      "category": [
+        "men",
+        "women",
+        "casual"
+      ],
+      "sizes": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "colors": [
+        "White",
+        "Black",
+        "Gray"
+      ],
+      "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&h=800&fit=crop",
+      "rating": 4.5,
+      "stock": 48,
+      "featured": false
+    },
+    {
+      "id": "VV010",
+      "name": "Casual Shirt",
+      "description": "Comfortable linen shirt for casual occasions.",
+      "price": 39.99,
+      "category": [
+        "men",
+        "women",
+        "casual"
+      ],
+      "sizes": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "colors": [
+        "White",
+        "Black",
+        "Gray"
+      ],
+      "image": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&h=800&fit=crop",
+      "rating": 4.5,
+      "stock": 48,
+      "featured": false
+    },
+    {
+      "id": "VV011",
+      "name": "test",
+      "price": 10,
+      "category": [
+        "men"
+      ],
+      "stock": 10,
+      "description": "test",
+      "sizes": [
+        "S"
+      ],
+      "colors": [
+        "Black"
+      ],
+      "image": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&h=800&fit=crop",
+      "rating": 4.5,
+      "featured": false,
+      "createdAt": "2025-12-30T10:08:16.907Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "men",
+      "name": "Men's Wear",
+      "count": 4
+    },
+    {
+      "id": "women",
+      "name": "Women's Wear",
+      "count": 4
+    },
+    {
+      "id": "formal",
+      "name": "Formal Wear",
+      "count": 3
+    },
+    {
+      "id": "casual",
+      "name": "Casual Wear",
+      "count": 5
+    },
+    {
+      "id": "accessories",
+      "name": "Accessories",
+      "count": 1
+    }
+  ]
+}

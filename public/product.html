@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product | Velvet Vogue</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="velvet">Velvet</span><span class="vogue">Vogue</span>
+                </a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-link">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="shop.html?category=men">Men's Wear</a>
+                        <a href="shop.html?category=women">Women's Wear</a>
+                        <a href="shop.html?category=formal">Formal</a>
+                        <a href="shop.html?category=casual">Casual</a>
+                        <a href="shop.html?category=accessories">Accessories</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <a href="login.html" class="nav-icon"><i class="fas fa-user"></i></a>
+                <a href="cart.html" class="nav-icon cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Details -->
+    <section class="product-details">
+        <div class="container">
+            <div class="product-breadcrumb">
+                <a href="index.html">Home</a> / 
+                <a href="shop.html">Shop</a> / 
+                <span id="productCategory">Product</span>
+            </div>
+            
+            <div class="product-main" id="productContainer">
+                <!-- Product loaded via JavaScript -->
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading product details...</p>
+                </div>
+            </div>
+            
+            <!-- Product Tabs -->
+            <div class="product-tabs">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="description">Description</button>
+                    <button class="tab-btn" data-tab="details">Details</button>
+                    <button class="tab-btn" data-tab="reviews">Reviews (24)</button>
+                    <button class="tab-btn" data-tab="shipping">Shipping & Returns</button>
+                </div>
+                <div class="tabs-content">
+                    <div class="tab-pane active" id="description">
+                        <p id="productDescription">Loading description...</p>
+                    </div>
+                    <div class="tab-pane" id="details">
+                        <table class="details-table">
+                            <tr>
+                                <th>Material</th>
+                                <td id="productMaterial">Loading...</td>
+                            </tr>
+                            <tr>
+                                <th>Care Instructions</th>
+                                <td>Machine wash cold, tumble dry low</td>
+                            </tr>
+                            <tr>
+                                <th>Country of Origin</th>
+                                <td>United Kingdom</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="reviews">
+                        <div class="reviews-summary">
+                            <div class="average-rating">
+                                <div class="rating-score">4.8</div>
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <p>Based on 24 reviews</p>
+                            </div>
+                            <div class="rating-bars">
+                                <div class="rating-bar">
+                                    <span>5 stars</span>
+                                    <div class="bar"><div class="fill" style="width: 80%;"></div></div>
+                                    <span>80%</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span>4 stars</span>
+                                    <div class="bar"><div class="fill" style="width: 15%;"></div></div>
+                                    <span>15%</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span>3 stars</span>
+                                    <div class="bar"><div class="fill" style="width: 5%;"></div></div>
+                                    <span>5%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="shipping">
+                        <h3>Shipping Information</h3>
+                        <ul>
+                            <li>Free shipping on orders over £50</li>
+                            <li>Standard delivery: 2-3 business days</li>
+                            <li>Express delivery: 1 business day</li>
+                            <li>International shipping available</li>
+                        </ul>
+                        <h3>Returns Policy</h3>
+                        <ul>
+                            <li>30-day return policy</li>
+                            <li>Items must be unworn and in original condition</li>
+                            <li>Free returns for UK customers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Products -->
+            <div class="related-products">
+                <h2 class="section-title">You May Also Like</h2>
+                <div class="products-grid" id="relatedProducts">
+                    <!-- Related products loaded via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3 class="footer-title">Velvet Vogue</h3>
+                    <p>Trendy casualwear and formal wear for young adults who want to express their identity through style.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="login.html">My Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Fashion Street, London, UK</li>
+                        <li><i class="fas fa-phone"></i> +44 20 7123 4567</li>
+                        <li><i class="fas fa-envelope"></i> info@velvetvogue.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Velvet Vogue. All rights reserved. | Designed for HND Computing Assignment</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html>

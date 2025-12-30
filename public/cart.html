@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | Velvet Vogue</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="velvet">Velvet</span><span class="vogue">Vogue</span>
+                </a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-link">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="shop.html?category=men">Men's Wear</a>
+                        <a href="shop.html?category=women">Women's Wear</a>
+                        <a href="shop.html?category=formal">Formal</a>
+                        <a href="shop.html?category=casual">Casual</a>
+                        <a href="shop.html?category=accessories">Accessories</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <a href="login.html" class="nav-icon"><i class="fas fa-user"></i></a>
+                <a href="cart.html" class="nav-icon cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Header -->
+    <section class="cart-header">
+        <div class="container">
+            <h1 class="page-title">Shopping Cart</h1>
+            <p class="page-subtitle">Review your items and proceed to checkout</p>
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section class="cart-content">
+        <div class="container">
+            <div class="cart-layout">
+                <!-- Cart Items -->
+                <div class="cart-items-section">
+                    <div class="cart-items-header">
+                        <h2>Your Items (<span id="itemCount">0</span>)</h2>
+                        <button class="btn btn-outline" onclick="clearCart()">Clear Cart</button>
+                    </div>
+                    
+                    <div class="cart-items-container" id="cartItems">
+                        <!-- Cart items loaded via JavaScript -->
+                        <div class="empty-cart">
+                            <i class="fas fa-shopping-bag"></i>
+                            <h3>Your cart is empty</h3>
+                            <p>Add some products to your cart!</p>
+                            <a href="shop.html" class="btn btn-primary">Continue Shopping</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <aside class="cart-summary">
+                    <div class="summary-card">
+                        <h3 class="summary-title">Order Summary</h3>
+                        
+                        <div class="summary-details" id="cartSummary">
+                            <div class="summary-row">
+                                <span>Subtotal:</span>
+                                <span>£0.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Shipping:</span>
+                                <span>£0.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Tax (20%):</span>
+                                <span>£0.00</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total:</span>
+                                <span>£0.00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="coupon-section">
+                            <input type="text" id="couponCode" placeholder="Enter coupon code">
+                            <button class="btn btn-outline" onclick="applyCoupon()">Apply</button>
+                        </div>
+                        
+                        <a href="checkout.html" class="btn btn-primary btn-block btn-large" id="checkoutBtn">
+                            <i class="fas fa-lock"></i> Proceed to Checkout
+                        </a>
+                        
+                        <p class="secure-checkout">
+                            <i class="fas fa-shield-alt"></i> Secure checkout guaranteed
+                        </p>
+                        
+                        <div class="payment-methods">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                            <i class="fab fa-cc-paypal"></i>
+                            <i class="fab fa-cc-apple-pay"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Continue Shopping -->
+                    <div class="continue-shopping">
+                        <a href="shop.html" class="btn btn-outline btn-block">
+                            <i class="fas fa-arrow-left"></i> Continue Shopping
+                        </a>
+                    </div>
+                </aside>
+            </div>
+            
+            <!-- Recently Viewed -->
+            <div class="recently-viewed">
+                <h2 class="section-title">Recently Viewed</h2>
+                <div class="products-grid" id="recentlyViewed">
+                    <!-- Products loaded via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3 class="footer-title">Velvet Vogue</h3>
+                    <p>Trendy casualwear and formal wear for young adults who want to express their identity through style.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="login.html">My Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Fashion Street, London, UK</li>
+                        <li><i class="fas fa-phone"></i> +44 20 7123 4567</li>
+                        <li><i class="fas fa-envelope"></i> info@velvetvogue.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Velvet Vogue. All rights reserved. | Designed for HND Computing Assignment</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

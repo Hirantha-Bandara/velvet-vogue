@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Velvet Vogue</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+</head>
+<body class="admin-body">
+    <!-- Admin Navigation -->
+    <nav class="admin-navbar">
+        <div class="container">
+            <div class="admin-brand">
+                <a href="index.html" class="logo">
+                    <span class="velvet">Velvet</span><span class="vogue">Vogue</span>
+                    <span class="admin-badge">Admin</span>
+                </a>
+            </div>
+            <div class="admin-menu" id="adminMenu">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="#products" class="nav-link" data-section="products">
+                    <i class="fas fa-tshirt"></i> Products
+                </a>
+                <a href="#orders" class="nav-link" data-section="orders">
+                    <i class="fas fa-shopping-cart"></i> Orders
+                </a>
+                <a href="#customers" class="nav-link" data-section="customers">
+                    <i class="fas fa-users"></i> Customers
+                </a>
+                <a href="#analytics" class="nav-link" data-section="analytics">
+                    <i class="fas fa-chart-line"></i> Analytics
+                </a>
+                <a href="#settings" class="nav-link" data-section="settings">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+            </div>
+            <div class="admin-actions">
+                <div class="admin-user">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces" alt="Admin" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Admin User</span>
+                        <span class="user-role">Administrator</span>
+                    </div>
+                    <button class="user-menu-btn">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Content -->
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <h3>Quick Stats</h3>
+            </div>
+            <div class="sidebar-stats">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #4CAF50;">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Total Orders</h4>
+                        <p class="stat-value" id="totalOrders">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #2196F3;">
+                        <i class="fas fa-pound-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Revenue</h4>
+                        <p class="stat-value" id="totalRevenue">£0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #FF9800;">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Products</h4>
+                        <p class="stat-value" id="totalProducts">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #9C27B0;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Customers</h4>
+                        <p class="stat-value" id="totalCustomers">0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-actions">
+                <button class="btn btn-primary btn-block" onclick="showAddProductModal()">
+                    <i class="fas fa-plus"></i> Add New Product
+                </button>
+                <button class="btn btn-outline btn-block" onclick="exportData()">
+                    <i class="fas fa-download"></i> Export Data
+                </button>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="system-info">
+                    <p><i class="fas fa-server"></i> System Status: <span class="status-online">Online</span></p>
+                    <p><i class="fas fa-database"></i> Storage: <span>85% used</span></p>
+                    <p><i class="fas fa-clock"></i> Last Updated: <span id="lastUpdated">Just now</span></p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Dashboard Section -->
+            <section class="admin-section active" id="dashboard">
+                <div class="section-header">
+                    <h1>Dashboard Overview</h1>
+                    <div class="date-range">
+                        <select id="dateRange">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month" selected>This Month</option>
+                            <option value="year">This Year</option>
+                            <option value="custom">Custom Range</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Charts -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Revenue Overview</h3>
+                            <div class="chart-legend">
+                                <span class="legend-item"><i class="fas fa-circle" style="color: #4CAF50;"></i> Sales</span>
+                                <span class="legend-item"><i class="fas fa-circle" style="color: #2196F3;"></i> Orders</span>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Top Products</h3>
+                            <select id="topProductsFilter">
+                                <option value="week">This Week</option>
+                                <option value="month" selected>This Month</option>
+                                <option value="year">This Year</option>
+                            </select>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="productsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="activity-card">
+                    <div class="card-header">
+                        <h3>Recent Activity</h3>
+                        <button class="btn btn-outline" onclick="loadAllActivity()">View All</button>
+                    </div>
+                    <div class="activity-list" id="activityList">
+                        <!-- Activity items loaded via JS -->
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p>New order #ORD-001 placed by John Doe</p>
+                                <span class="activity-time">2 minutes ago</span>
+                            </div>
+                            <span class="activity-badge success">£89.99</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section class="admin-section" id="products">
+                <div class="section-header">
+                    <h1>Product Management</h1>
+                    <div class="section-actions">
+                        <button class="btn btn-primary" onclick="showAddProductModal()">
+                            <i class="fas fa-plus"></i> Add Product
+                        </button>
+                        <button class="btn btn-outline" onclick="exportProducts()">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Products Table -->
+                <div class="data-card">
+                    <div class="table-header">
+                        <div class="table-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="productSearch" placeholder="Search products...">
+                        </div>
+                        <div class="table-filters">
+                            <select id="categoryFilter">
+                                <option value="">All Categories</option>
+                                <option value="men">Men's Wear</option>
+                                <option value="women">Women's Wear</option>
+                                <option value="formal">Formal</option>
+                                <option value="casual">Casual</option>
+                                <option value="accessories">Accessories</option>
+                            </select>
+                            <select id="statusFilter">
+                                <option value="">All Status</option>
+                                <option value="in-stock">In Stock</option>
+                                <option value="low-stock">Low Stock</option>
+                                <option value="out-of-stock">Out of Stock</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table id="productsTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Status</th>
+                                    <th>Rating</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTableBody">
+                                <!-- Products loaded via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="table-footer">
+                        <div class="table-info">
+                            Showing <span id="productsCount">0</span> products
+                        </div>
+                        <div class="table-pagination" id="productsPagination">
+                            <!-- Pagination loaded via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Orders Section -->
+            <section class="admin-section" id="orders">
+                <div class="section-header">
+                    <h1>Order Management</h1>
+                    <div class="section-actions">
+                        <button class="btn btn-outline" onclick="refreshOrders()">
+                            <i class="fas fa-sync"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Orders Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card large">
+                        <div class="stat-icon" style="background-color: #2196F3;">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>Pending Orders</h4>
+                            <p class="stat-value" id="pendingOrders">0</p>
+                            <p class="stat-change">+2 from yesterday</p>
+                        </div>
+                    </div>
+                    <div class="stat-card large">
+                        <div class="stat-icon" style="background-color: #4CAF50;">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>Completed Orders</h4>
+                            <p class="stat-value" id="completedOrders">0</p>
+                            <p class="stat-change">+5 from yesterday</p>
+                        </div>
+                    </div>
+                    <div class="stat-card large">
+                        <div class="stat-icon" style="background-color: #FF9800;">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>Shipped Orders</h4>
+                            <p class="stat-value" id="shippedOrders">0</p>
+                            <p class="stat-change">+3 from yesterday</p>
+                        </div>
+                    </div>
+                    <div class="stat-card large">
+                        <div class="stat-icon" style="background-color: #F44336;">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>Cancelled Orders</h4>
+                            <p class="stat-value" id="cancelledOrders">0</p>
+                            <p class="stat-change">No change</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Orders Table -->
+                <div class="data-card">
+                    <div class="table-header">
+                        <div class="table-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="orderSearch" placeholder="Search orders...">
+                        </div>
+                        <div class="table-filters">
+                            <select id="orderStatusFilter">
+                                <option value="">All Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="processing">Processing</option>
+                                <option value="shipped">Shipped</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                            <input type="date" id="orderDateFilter">
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table id="ordersTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Payment</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody">
+                                <!-- Orders loaded via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Customers Section -->
+            <section class="admin-section" id="customers">
+                <div class="section-header">
+                    <h1>Customer Management</h1>
+                    <div class="section-actions">
+                        <button class="btn btn-outline" onclick="exportCustomers()">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Customers Table -->
+                <div class="data-card">
+                    <div class="table-responsive">
+                        <table id="customersTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Customer ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Joined</th>
+                                    <th>Orders</th>
+                                    <th>Total Spent</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customersTableBody">
+                                <!-- Customers loaded via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section class="admin-section" id="analytics">
+                <div class="section-header">
+                    <h1>Sales Analytics</h1>
+                    <div class="date-range">
+                        <input type="date" id="analyticsStartDate">
+                        <span>to</span>
+                        <input type="date" id="analyticsEndDate">
+                        <button class="btn btn-primary" onclick="updateAnalytics()">Apply</button>
+                    </div>
+                </div>
+                
+                <!-- Analytics Charts -->
+                <div class="analytics-grid">
+                    <div class="analytics-card wide">
+                        <div class="card-header">
+                            <h3>Sales Performance</h3>
+                            <select id="salesPerformanceFilter">
+                                <option value="daily">Daily</option>
+                                <option value="weekly" selected>Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="salesChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h3>Top Categories</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="categoriesChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h3>Customer Demographics</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="demographicsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="admin-section" id="settings">
+                <div class="section-header">
+                    <h1>System Settings</h1>
+                </div>
+                
+                <!-- Settings Tabs -->
+                <div class="settings-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="general">General</button>
+                        <button class="tab-btn" data-tab="payment">Payment</button>
+                        <button class="tab-btn" data-tab="shipping">Shipping</button>
+                        <button class="tab-btn" data-tab="notifications">Notifications</button>
+                        <button class="tab-btn" data-tab="security">Security</button>
+                    </div>
+                    
+                    <!-- General Settings -->
+                    <div class="tab-content active" id="generalTab">
+                        <form id="generalSettingsForm">
+                            <div class="form-section">
+                                <h3>Store Information</h3>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Store Name</label>
+                                        <input type="text" value="Velvet Vogue" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Store Email</label>
+                                        <input type="email" value="info@velvetvogue.com" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Store Phone</label>
+                                        <input type="tel" value="+44 20 7123 4567" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Store Address</label>
+                                        <input type="text" value="123 Fashion Street, London, UK" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-section">
+                                <h3>Currency & Language</h3>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Currency</label>
+                                        <select>
+                                            <option value="GBP" selected>British Pound (£)</option>
+                                            <option value="USD">US Dollar ($)</option>
+                                            <option value="EUR">Euro (€)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Language</label>
+                                        <select>
+                                            <option value="en" selected>English</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="fr">French</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Time Zone</label>
+                                        <select>
+                                            <option value="Europe/London" selected>London (GMT)</option>
+                                            <option value="America/New_York">New York (EST)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <button type="reset" class="btn btn-outline">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Payment Settings -->
+                    <div class="tab-content" id="paymentTab">
+                        <form id="paymentSettingsForm">
+                            <div class="form-section">
+                                <h3>Payment Methods</h3>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" checked> Credit/Debit Cards
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" checked> PayPal
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox"> Apple Pay
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox"> Google Pay
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-section">
+                                <h3>Stripe Settings</h3>
+                                <div class="form-group">
+                                    <label>Publishable Key</label>
+                                    <input type="text" placeholder="pk_live_...">
+                                </div>
+                                <div class="form-group">
+                                    <label>Secret Key</label>
+                                    <input type="password" placeholder="sk_live_...">
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Shipping Settings -->
+                    <div class="tab-content" id="shippingTab">
+                        <form id="shippingSettingsForm">
+                            <div class="form-section">
+                                <h3>Shipping Methods</h3>
+                                <div class="shipping-methods">
+                                    <div class="shipping-method">
+                                        <div class="method-header">
+                                            <h4>Standard Shipping</h4>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="method-details">
+                                            <input type="number" value="4.99" min="0" step="0.01"> £
+                                            <span>Delivery in 3-5 business days</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="shipping-method">
+                                        <div class="method-header">
+                                            <h4>Express Shipping</h4>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="method-details">
+                                            <input type="number" value="9.99" min="0" step="0.01"> £
+                                            <span>Delivery in 1-2 business days</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="shipping-method">
+                                        <div class="method-header">
+                                            <h4>Free Shipping</h4>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="method-details">
+                                            <input type="number" value="50" min="0" step="1"> £ minimum order
+                                            <span>Free delivery on orders over £50</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal" id="addProductModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>Add New Product</h2>
+                <button class="modal-close" onclick="closeModal('addProductModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addProductForm" onsubmit="return saveProduct(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Product Name *</label>
+                            <input type="text" id="productName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Price (£) *</label>
+                            <input type="number" id="productPrice" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Category *</label>
+                            <select id="productCategory" multiple required>
+                                <option value="men">Men's Wear</option>
+                                <option value="women">Women's Wear</option>
+                                <option value="formal">Formal</option>
+                                <option value="casual">Casual</option>
+                                <option value="accessories">Accessories</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Stock Quantity *</label>
+                            <input type="number" id="productStock" min="0" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Description *</label>
+                        <textarea id="productDescription" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Sizes (comma separated)</label>
+                            <input type="text" id="productSizes" placeholder="S, M, L, XL">
+                        </div>
+                        <div class="form-group">
+                            <label>Colors (comma separated)</label>
+                            <input type="text" id="productColors" placeholder="Black, Blue, Red">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Image URL</label>
+                        <input type="url" id="productImage" placeholder="https://example.com/image.jpg">
+                        <small>Leave empty for default image</small>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="closeModal('addProductModal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div class="modal" id="editProductModal">
+        <!-- Similar to add product modal, populated via JS -->
+    </div>
+
+    <!-- Order Details Modal -->
+    <div class="modal" id="orderDetailsModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>Order Details</h2>
+                <button class="modal-close" onclick="closeModal('orderDetailsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="orderDetailsContent">
+                    <!-- Order details loaded via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
